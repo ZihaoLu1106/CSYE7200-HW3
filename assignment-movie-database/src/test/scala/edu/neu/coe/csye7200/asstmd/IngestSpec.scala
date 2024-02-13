@@ -22,7 +22,8 @@ class IngestSpec extends AnyFlatSpec with Matchers {
     val xys = ingester(source).toSeq
     // check that xys has exactly one element, consisting of Success(42) -- 10 points
     // TO BE IMPLEMENTED 
-
+    xys.length shouldBe 1
+    xys.head shouldBe Success(42)
 
     // STUB
     // END
@@ -38,7 +39,7 @@ class IngestSpec extends AnyFlatSpec with Matchers {
           case e: ParseException => System.err.println(e); my
         }
         val mos = for (my <- mys) yield for (m <- my.toOption; if m.production.country == "New Zealand") yield m
-        val ms = mos.flatten
+        val ms = mos.flatten.toSeq
         ms.size shouldBe 4
         ms foreach println
         source.close()

@@ -102,7 +102,7 @@ object Movie extends App {
 // TO BE IMPLEMENTED 
 
       // STUB
-       Try(???)
+       Try(apply(w.split(",").toSeq))
       // END
     }
   }
@@ -129,7 +129,8 @@ object Movie extends App {
       // TO BE IMPLEMENTED 
 
       // STUB
-       ???
+      indices.map(index => list(index))
+
       // END
     }
     result.toList
@@ -212,14 +213,16 @@ object Rating {
   // Hint: This should similar to apply method in Object Name. The parameter of apply in case match should be same as case class Rating
   // 13 points
   def apply(s: String): Rating = {
-// TO BE IMPLEMENTED 
-
-
-
-
+// TO BE IMPLEMENTED
 
     // STUB
-     ???
+    s match {
+      case rRating(code, _, num) =>
+        val n = Option(num).map(_.toInt)
+        Rating(code, n)
+      case _ =>
+        throw new IllegalArgumentException("Invalid Rating Format")
+    }
     // END
   }
 }
